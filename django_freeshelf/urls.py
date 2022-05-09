@@ -21,10 +21,10 @@ from books import views as books_views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
-    path('', books_views.list_books, name='list_albums'),
+    path('', books_views.list_books, name='list_books'),
     path('books/new/', books_views.new_book, name='new_book'),
-    path('books/<int:pk>/edit/', books_views.edit_book,name='edit_album'),
-    path('books/<int:pk>/delete/', books_views.delete_book, name='delete_album'),
+    path('books/<int:pk>/edit/', books_views.edit_book,name='edit_book'),
+    path('books/<int:pk>/delete/', books_views.delete_book, name='delete_book'),
     path('books/<int:pk>/', books_views.notes_book,name='notes_book'),
     path('books/<int:pk>/notes/', books_views.add_note, name='add_note'),
 ]

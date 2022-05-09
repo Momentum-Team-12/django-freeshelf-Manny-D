@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Book
-# from .models import Note
+from .models import Note
 from .forms import BookForm
-# from .forms import NoteForm
+from .forms import NoteForm
 
 
 # Create your views here.

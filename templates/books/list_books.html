@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Book List</h1>
+
+<p><a href="{% url 'new_book' %}">Add New Book</a></p>
+
+<div class="flex flex-wrap">
+    {% for book in books %}
+    <div class="w-33 pa3">
+        <h2>{{ book.title }}</h2>
+        <a href="{% url 'notes_book' pk=book.pk %}">{{ book.author }}</a><br>
+        <p>Description: {{ book.description }}</p>
+
+        <div class="flex">
+        <div class="pr2">
+        <div>
+          
+        </div>
+    
+    
+
+      <p>
+        <a href="{% url 'add_note' pk=book.pk %}">Add Note</a><br> 
+        <a href="{% url 'edit_book' pk=book.pk %}">Edit Book</a><br>    
+        <a class="red" href="{% url 'delete_book' pk=book.pk %}">Delete Book</a>
+      </p>
+      <p>(entry created on: {{ book.created_at }})</p>
+        </div>
+        </div>
+    </div>
+    
+  {% endfor %}
+</div>  
+{% endblock %}
