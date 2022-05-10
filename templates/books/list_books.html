@@ -10,7 +10,7 @@
         <h2><a href="{% url 'notes_book' pk=book.pk %}">{{ book.title }}</a> by: {{ book.author }}</h2>
             <p>{{ book.description }}</p>
             <p>More info <a href="{{ book.url }}">here</a></p>
-            <p>| added {{ book.created_at }} |</p>
+            <p>| added {{ book.created_at }} | {{ book.category }}</p>
                 <p>
                     <a href="{% url 'add_note' pk=book.pk %}">Add Note</a> |  
                     <a href="{% url 'edit_book' pk=book.pk %}">Edit Book</a> |    

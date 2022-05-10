@@ -13,6 +13,7 @@
                 <p>By: {{ book.author }}</p>
                 <p>Description: {{ book.description }}</p>
                 <p>More info <a href="{{ book.url }}">here</a></p>
+                <p>| added {{ book.created_at }} | {{ book.category }}</p>
             </div>
                 <p>
                 {% for book in book.notes.all %}
@@ -29,7 +30,7 @@
                 <br>
                 </p>
         
-                <p>(entry created on: {{ book.created_at }})</p>
+                
             </div>  
             </div>   
             </div>

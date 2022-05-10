@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Book
-from .models import Note
+from .models import Book, Note, Category
 from .forms import BookForm
 from .forms import NoteForm
 from .forms import ImageForm
-
 
 # Create your views here.
 def list_books(request):
@@ -82,3 +80,8 @@ def image_upload_view(request):
     else:
         form = ImageForm()
     return render(request, 'index.html', {'form': form})
+
+def category_book(request):
+    category = Category.objects.get(slug=slug)
+    books = Book.objects.filter(category=category)
+    return render(request, "books/category.html", {'books':books, 'category':category})

@@ -31,6 +31,8 @@ urlpatterns = [
     path('books/<int:pk>/', books_views.notes_book,name='notes_book'),
     path('books/<int:pk>/notes/', books_views.add_note, name='add_note'),
     path('upload/', books_views.image_upload_view),
+    path('books/<slug:slug>/', books_views.category_book,name='category'),
+    path('books/<slug:slug>/', books_views.category_book,name='favorite'),
 ]
 
 if settings.DEBUG:
