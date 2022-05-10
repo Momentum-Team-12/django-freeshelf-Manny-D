@@ -1,0 +1,27 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<h2>Add a note for {{ book.title }}:</h2>
+
+<div class="flex flex-wrap">
+    {% for book in books %}
+        <div>{{ book.note }}</div>
+</div>
+    {% endfor %}
+
+<div>
+    <form action="{% url 'add_note' pk=book.pk %}" method="POST">
+    {% csrf_token %} 
+    {{ form.as_p }} 
+    {% for book in book.notes.all %}
+        <div class="flex">
+            <div>{{ book.note }}</div>
+        </div>
+    {% endfor %}
+ <br>
+        <div>
+            <button type="submit">Add Note</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

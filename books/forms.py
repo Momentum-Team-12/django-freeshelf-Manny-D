@@ -1,5 +1,5 @@
 from django import forms
-from .models import Book, Note
+from .models import Book, Note, Image
 
 
 class BookForm(forms.ModelForm):
@@ -17,3 +17,9 @@ class NoteForm(forms.ModelForm):
         fields = [
             'note',
         ]
+
+class ImageForm(forms.ModelForm):
+    """Form for the image model"""
+    class Meta:
+        model = Image
+        fields = ('title', 'image')

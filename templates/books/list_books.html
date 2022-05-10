@@ -1,35 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Book List</h1>
-
+<h1>Freeshelf</h1>
 <p><a href="{% url 'new_book' %}">Add New Book</a></p>
-
+<h3>Recently Added Books</h3>
 <div class="flex flex-wrap">
     {% for book in books %}
     <div class="w-33 pa3">
-        <h2>{{ book.title }}</h2>
-        <a href="{% url 'notes_book' pk=book.pk %}">{{ book.author }}</a><br>
-        <p>Description: {{ book.description }}</p>
-
-        <div class="flex">
-        <div class="pr2">
-        <div>
-          
-        </div>
-    
-    
-
-      <p>
-        <a href="{% url 'add_note' pk=book.pk %}">Add Note</a><br> 
-        <a href="{% url 'edit_book' pk=book.pk %}">Edit Book</a><br>    
-        <a class="red" href="{% url 'delete_book' pk=book.pk %}">Delete Book</a>
-      </p>
-      <p>(entry created on: {{ book.created_at }})</p>
-        </div>
-        </div>
+        <h2><a href="{% url 'notes_book' pk=book.pk %}">{{ book.title }}</a> by: {{ book.author }}</h2>
+            <p>{{ book.description }}</p>
+            <p>{{ book.url }}</p>
+            <p>| added {{ book.created_at }} |</p>
+                <p>
+                    <a href="{% url 'add_note' pk=book.pk %}">Add Note</a><br> 
+                    <a href="{% url 'edit_book' pk=book.pk %}">Edit Book</a><br>    
+                    <a class="red" href="{% url 'delete_book' pk=book.pk %}">Delete Book</a>
+                </p>
     </div>
-    
-  {% endfor %}
+    <hr>
+    {% endfor %}
 </div>  
 {% endblock %}
