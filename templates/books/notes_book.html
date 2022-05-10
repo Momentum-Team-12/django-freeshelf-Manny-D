@@ -9,7 +9,7 @@
             <div class="pr2">
             <div>
                 {% load static %}
-                <img src="{% static book.image %}">
+                <a href="{{ book.url }}"><img src="{% static book.image %}"></a>
                 <p>By: {{ book.author }}</p>
                 <p>Description: {{ book.description }}</p>
                 <p>More info <a href="{{ book.url }}">here</a></p>
