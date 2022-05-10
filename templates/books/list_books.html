@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Freeshelf</h1>
 <p><a href="{% url 'new_book' %}">Add New Book</a></p>
-<h3>Recently Added Books</h3>
+<h2>Recently Added Books</h2>
 <div class="flex flex-wrap">
     {% for book in books %}
     <div class="w-33 pa3">
