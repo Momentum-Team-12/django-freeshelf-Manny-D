@@ -9,6 +9,8 @@ class BookForm(forms.ModelForm):
             'title',
             'author',
             'description',
+            # 'image',
+            'url',
         ]
 
 class NoteForm(forms.ModelForm):
