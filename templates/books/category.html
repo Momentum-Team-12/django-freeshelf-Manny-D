@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<a href="{% url 'list_books' %}">Back to Book List</a>
+<h1>Book Category: {{ category }}</h1>
+<div class="flex flex-wrap">
+    {% for book in books %}
+    <div class="w-33 pa3">
+        <h2><a href="{% url 'notes_book' pk=book.pk %}">{{ book.title }}</a> by: {{ book.author }}</h2>
+            <p>{{ book.description }}</p>
+            <p>More info <a href="{{ book.url }}">here</a></p>
+            <p>| added {{ book.created_at }} | {{ book.category }}</p>
+            
+
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
