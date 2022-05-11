@@ -18,7 +18,7 @@ class Book(models.Model):
     author = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to = 'static/img/')
+    image = models.ImageField(upload_to = 'images/', blank=True, null=True)
     url = models.URLField(max_length=200, null=True, blank=True)
     # one to many relationship - book has one category but category has many books
     category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, blank=True, related_name='books')

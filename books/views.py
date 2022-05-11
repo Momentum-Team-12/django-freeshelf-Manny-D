@@ -3,6 +3,7 @@ from .models import Book, Note, Category
 from .forms import BookForm
 from .forms import NoteForm
 from .forms import ImageForm
+from .forms import Favorite
 from .forms import FavoriteForm
 
 def home(request):
@@ -99,10 +100,10 @@ def add_favorite(request, pk):
         if form.is_valid():
             favorite = form.save(commit=False)
             favorite.book = book
-            favorite.user = favorite 
+            favorite.user = user 
             favorite.save()
             return redirect(to='list_books', pk=pk)
 
 def favorite_book(request, pk):
-    favorites = FavoriteForm.objects.filter(user=request.user)
+    favorites = Favorite.objects.filter(user=request.user)
     return render(request, 'books/favorite_book.html', {'favorites': favorites})

@@ -20,6 +20,7 @@ from django.urls import include
 from books import views as books_views
 from django.conf import settings
 from django.conf.urls.static import static
+from books import views as books_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -35,8 +36,8 @@ urlpatterns = [
     path('books/<slug:slug>/', books_views.category_book,name='favorite'),
     path('books/', books_views.list_books, name='list_books'),
     path('books/<int:pk>/favorites/', books_views.add_favorite, name='add_favorite'),
-    path('favorites', books_views.favorite_book, name='add_favorite'),
-]
+    path('favorites', books_views.favorite_book, name='favorites'),
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
