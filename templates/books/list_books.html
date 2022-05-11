@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Freeshelf</h1>
-<p><a href="{% url 'new_book' %}">Add New Book</a></p>
-<h2>Recently Added Books</h2>
+<br>
+<h1>Recently Added Books</h1>
 <div class="flex flex-wrap">
     {% for book in books %}
     <div class="w-33 pa3">

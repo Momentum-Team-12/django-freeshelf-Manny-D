@@ -4,11 +4,14 @@ from .forms import BookForm
 from .forms import NoteForm
 from .forms import ImageForm
 
-# Create your views here.
+def home(request):
+	if request.user.is_authenticated:
+		return redirect('list_books')
+	return render(request, "base.html")
+
 def list_books(request):
     books = Book.objects.all()
     return render(request, "books/list_books.html", {"books": books})
-
 
 def new_book(request):
     if request.method == 'GET':
@@ -81,7 +84,7 @@ def image_upload_view(request):
         form = ImageForm()
     return render(request, 'index.html', {'form': form})
 
-def category_book(request):
+def category_book(request, slug):
     category = Category.objects.get(slug=slug)
     books = Book.objects.filter(category=category)
     return render(request, "books/category.html", {'books':books, 'category':category})

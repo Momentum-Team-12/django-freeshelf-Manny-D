@@ -24,7 +24,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
-    path('', books_views.list_books, name='list_books'),
+    path("", books_views.home, name="home"),
     path('books/new/', books_views.new_book, name='new_book'),
     path('books/<int:pk>/edit/', books_views.edit_book,name='edit_book'),
     path('books/<int:pk>/delete/', books_views.delete_book, name='delete_book'),
@@ -33,6 +33,7 @@ urlpatterns = [
     path('upload/', books_views.image_upload_view),
     path('books/<slug:slug>/', books_views.category_book,name='category'),
     path('books/<slug:slug>/', books_views.category_book,name='favorite'),
+    path('books/', books_views.list_books, name='list_books'),
 ]
 
 if settings.DEBUG:
