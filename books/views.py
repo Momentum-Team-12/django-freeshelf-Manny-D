@@ -3,6 +3,7 @@ from .models import Book, Note, Category
 from .forms import BookForm
 from .forms import NoteForm
 from .forms import ImageForm
+from .forms import FavoriteForm
 
 def home(request):
 	if request.user.is_authenticated:
@@ -10,6 +11,7 @@ def home(request):
 	return render(request, "base.html")
 
 def list_books(request):
+    form = FavoriteForm()
     books = Book.objects.all()
     return render(request, "books/list_books.html", {"books": books})
 
@@ -88,3 +90,10 @@ def category_book(request, slug):
     category = Category.objects.get(slug=slug)
     books = Book.objects.filter(category=category)
     return render(request, "books/category.html", {'books':books, 'category':category})
+
+def add_favorite(request):
+    if request.method == 'POST':
+        form = FavoriteForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(to='list_books')
