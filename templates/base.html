@@ -11,10 +11,12 @@
     <div>
         {% if user.is_authenticated %}
         <a href="{% url 'new_book' %}">Add New Book</a> | <a href = "{% url 'auth_logout'  %}">Logout</a>
+        <hr>
         {% else %}
             <p>Please Register or Login to see your Book List!</p>
                 <a href = "{% url 'registration_register'  %}">Register</a> | 
                 <a href = "{% url 'auth_login'  %}">Login</a>
+            <hr>
         {% endif %}
         </div>
     {% block content %}

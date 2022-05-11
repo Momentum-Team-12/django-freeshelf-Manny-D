@@ -8,7 +8,9 @@
     {% csrf_token %}
     {{ form.as_p }}
     <div>
-      <button type="submit">Update Book</button>
+      <button type="submit">Update Book</button><br>
+      <br>
+      <a href="{% url 'list_books' %}">Cancel</a>
     </div>
   </form>
 </div>

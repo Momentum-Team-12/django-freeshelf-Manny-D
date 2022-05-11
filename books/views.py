@@ -91,9 +91,18 @@ def category_book(request, slug):
     books = Book.objects.filter(category=category)
     return render(request, "books/category.html", {'books':books, 'category':category})
 
-def add_favorite(request):
+def add_favorite(request, pk):
     if request.method == 'POST':
+        book = get_object_or_404(Book, pk=pk)
+        user = request.user
         form = FavoriteForm(data=request.POST)
         if form.is_valid():
-            form.save()
-            return redirect(to='list_books')
+            favorite = form.save(commit=False)
+            favorite.book = book
+            favorite.user = favorite 
+            favorite.save()
+            return redirect(to='list_books', pk=pk)
+
+def favorite_book(request, pk):
+    favorites = FavoriteForm.objects.filter(user=request.user)
+    return render(request, 'books/favorite_book.html', {'favorites': favorites})

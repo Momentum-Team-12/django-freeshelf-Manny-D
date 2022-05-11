@@ -34,6 +34,8 @@ urlpatterns = [
     path('books/<slug:slug>/', books_views.category_book,name='category'),
     path('books/<slug:slug>/', books_views.category_book,name='favorite'),
     path('books/', books_views.list_books, name='list_books'),
+    path('books/<int:pk>/favorites/', books_views.add_favorite, name='add_favorite'),
+    path('favorites', books_views.favorite_book, name='add_favorite'),
 ]
 
 if settings.DEBUG:
