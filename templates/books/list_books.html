@@ -13,7 +13,7 @@
                 {% csrf_token %}
                 {{form.as_p}}
                 <p><button type='submit'>Favorite</button> | added {{ book.created_at }} | {{ book.category }}</p>
-                    <p>
+                    <p></form>
                         <a href="{% url 'add_note' pk=book.pk %}">Add Note</a> |  
                         <a href="{% url 'edit_book' pk=book.pk %}">Edit Book</a> |    
                         <a class="red" href="{% url 'delete_book' pk=book.pk %}">Delete Book</a>

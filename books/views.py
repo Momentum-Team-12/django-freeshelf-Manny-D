@@ -12,9 +12,17 @@ def home(request):
 	return render(request, "base.html")
 
 def list_books(request):
-    form = FavoriteForm()
     books = Book.objects.all()
     return render(request, "books/list_books.html", {"books": books})
+
+def book_detail(request,pk):
+    form = FavoriteForm()
+    book = Book.objects.get(pk=pk)
+    context = {
+        'book':book,
+        'form':form,
+    }
+    return render(request, 'books/book_detail.html', context)    
 
 def new_book(request):
     if request.method == 'GET':
@@ -52,7 +60,7 @@ def delete_book(request, pk):
     return render(request, "books/delete_book.html", {"book": book})
 
 
-def notes_book(request, pk): 
+def notes_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
 
     return render(request, "books/notes_book.html", {"book": book})
@@ -102,8 +110,8 @@ def add_favorite(request, pk):
             favorite.book = book
             favorite.user = user 
             favorite.save()
-            return redirect(to='list_books', pk=pk)
+            return redirect(to='book_detail', pk=pk)
 
-def favorite_book(request, pk):
+def favorite_book(request):
     favorites = Favorite.objects.filter(user=request.user)
     return render(request, 'books/favorite_book.html', {'favorites': favorites})

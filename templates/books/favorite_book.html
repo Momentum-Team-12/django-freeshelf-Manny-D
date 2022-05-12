@@ -1,20 +1,15 @@
-{% extends "base.html" %}
-
 {% block content %}
-<br>
-<h1>Your Favorite Books</h1>
+<a href="{% url 'list_books' %}">Back to Book List</a>
+<h1>Your Favorite Book(s):</h1>
 <div class="flex flex-wrap">
-    {% for book in books %}
-    <div class="w-33 pa3">
-        <h2><a href="{% url 'notes_book' pk=book.pk %}">{{ book.title }}</a> by: {{ book.author }}</h2>
-            <p>{{ book.description }}</p>
-            <p>More info <a href="{{ book.url }}">here</a></p>
-            {% csrf_token %}
-            {{form.as_p}}
-            <p><button type='submit'>Favorite</button> | added {{ book.created_at }} | {{ book.category }}</p>
-    </div>
-   
-    <hr>
+    {% for favorite in favorites %}
+        <div class="w-33 pa3">
+            <h2><a href="{% url 'book_detail' favorite.book.pk %}">{{ favorite.book.title }}</a> by: {{ favorite.book.author }}</h2>
+                <p>{{ favorite.book.description }}</p>
+                <p>More info <a href="{{ book.url }}">here</a></p>
+                <p>| added {{ favorite.book.created_at }} | {{ favorite.book.category }}</p>
+        </div>
+<hr>
     {% endfor %}
 </div>  
 {% endblock %}

@@ -1,5 +1,3 @@
-{% extends "base.html" %}
-
 {% block content %}
 <a href="{% url 'list_books' %}">Back to Book List</a>
 <h1>Book Category: {{ category }}</h1>
@@ -10,8 +8,6 @@
             <p>{{ book.description }}</p>
             <p>More info <a href="{{ book.url }}">here</a></p>
             <p>| added {{ book.created_at }} | {{ book.category }}</p>
-            
-
     </div>
     {% endfor %}
 </div>
